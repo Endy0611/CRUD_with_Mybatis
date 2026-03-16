@@ -1,4 +1,4 @@
 package com.example.batis_demo.repository;
 
-public interface BookRepository {
+public interface CategoryRepository {
 }

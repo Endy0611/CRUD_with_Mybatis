@@ -4,14 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book {
-    private long bookId;
-    private String title;
-    private Instant publishDate;
-    private Author author;
+public class Category {
+    private Long categoryId;
+    private String name;
 }
