@@ -28,4 +28,11 @@ public interface AuthorRepository {
         INSERT INTO authors VALUES (default, #{req.name}, #{req.gender}) RETURNING *;
     """)
     Author saveAuthor(@Param ("req") AuthorRequest authorRequest);
+
+
+    @ResultMap("authorMapper")
+    @Select("""
+    DELETE FROM authors WHERE author_id = #{authorId} RETURNING *;
+    """)
+    Author deleteAuthorById(Long authorId);
 }

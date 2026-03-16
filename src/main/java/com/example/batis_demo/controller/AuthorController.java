@@ -5,6 +5,7 @@ import com.example.batis_demo.model.entity.Author;
 import com.example.batis_demo.model.request.AuthorRequest;
 import com.example.batis_demo.model.response.ApiResponse;
 import com.example.batis_demo.service.AuthorService;
+import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,5 +61,18 @@ public class AuthorController {
                 .timestamp(Instant.now())
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{author-id}")
+    public ResponseEntity<ApiResponse<Author>> deleteAuthorById(@PathVariable("author-id") Long authorId) {
+        ApiResponse<Author> apiResponse = ApiResponse.<Author>builder()
+                .success(true)
+                .status(HttpStatus.OK)
+                .message("Delete successfully")
+                .payload(authorService.deleteAuthorById(authorId))
+                .timestamp(Instant.now())
+                .build();
+
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 }
