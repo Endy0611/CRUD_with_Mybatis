@@ -1,6 +1,7 @@
 package com.example.batis_demo.repository;
 
 import com.example.batis_demo.model.entity.Book;
+import com.example.batis_demo.model.request.BookRequest;
 import com.example.batis_demo.model.response.ApiResponse;
 import org.apache.ibatis.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -30,4 +31,10 @@ public interface BookRepository {
         SELECT * FROM books WHERE book_id = #{bookId};
     """)
     Book getBookById(Long bookId);
+
+    @ResultMap("BookMapper")
+    @Select("""
+        INSERT INTO books VALUES (default, #{req.title}, #{req.publishDate}, #{req.authorId}) RETURNING *;
+    """)
+    Book saveBook(@Param("req") BookRequest bookRequest);
 }

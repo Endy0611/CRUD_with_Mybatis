@@ -1,6 +1,7 @@
 package com.example.batis_demo.service.Impl;
 
 import com.example.batis_demo.model.entity.Book;
+import com.example.batis_demo.model.request.BookRequest;
 import com.example.batis_demo.model.response.ApiResponse;
 import com.example.batis_demo.repository.BookRepository;
 import com.example.batis_demo.service.BookService;
@@ -28,5 +29,11 @@ public class BookServiceImpl implements BookService {
     public Book getBookById(Long bookId) {
         return bookRepository.getBookById(bookId);
     }
+
+    @Override
+    public Book saveBook(BookRequest bookRequest) {
+        return bookRepository.saveBook(bookRequest);
+    }
+
 
 }

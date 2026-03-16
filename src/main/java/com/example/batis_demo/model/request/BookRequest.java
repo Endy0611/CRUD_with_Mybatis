@@ -13,5 +13,5 @@ import java.time.Instant;
 public class BookRequest {
     private String title;
     private Instant publishDate;
-    private Author author;
+    private Long authorId;
 }
