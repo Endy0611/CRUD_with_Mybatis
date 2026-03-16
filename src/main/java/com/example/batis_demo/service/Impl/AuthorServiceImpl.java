@@ -1,6 +1,7 @@
 package com.example.batis_demo.service.Impl;
 
 import com.example.batis_demo.model.entity.Author;
+import com.example.batis_demo.model.request.AuthorRequest;
 import com.example.batis_demo.repository.AuthorRepository;
 import com.example.batis_demo.service.AuthorService;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,10 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public Author getAuthorById(Long authorId) {
         return authorRepository.getAuthorById(authorId);
+    }
+
+    @Override
+    public Author saveAuthor(AuthorRequest authorRequest) {
+        return authorRepository.saveAuthor(authorRequest);
     }
 }

@@ -2,6 +2,7 @@ package com.example.batis_demo.controller;
 
 
 import com.example.batis_demo.model.entity.Author;
+import com.example.batis_demo.model.request.AuthorRequest;
 import com.example.batis_demo.model.response.ApiResponse;
 import com.example.batis_demo.service.AuthorService;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tools.jackson.databind.json.JsonMapper;
 
+import javax.swing.text.html.HTML;
 import java.time.Instant;
 import java.util.List;
 
@@ -48,6 +50,15 @@ public class AuthorController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
-
-
+    @PostMapping
+    public ResponseEntity<ApiResponse<Author>> saveAuthor(@RequestBody AuthorRequest authorRequest) {
+        ApiResponse<Author> apiResponse = ApiResponse.<Author>builder()
+                .success(true)
+                .status(HttpStatus.CREATED)
+                .message("success")
+                .payload(authorService.saveAuthor(authorRequest))
+                .timestamp(Instant.now())
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
+    }
 }
