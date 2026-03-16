@@ -21,4 +21,9 @@ public class AuthorServiceImpl implements AuthorService {
         int offSet = size * (page-1);
         return authorRepository.getAllAuthor(offSet,size);
     }
+
+    @Override
+    public Author getAuthorById(Long authorId) {
+        return authorRepository.getAuthorById(authorId);
+    }
 }

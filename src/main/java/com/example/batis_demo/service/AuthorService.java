@@ -7,4 +7,6 @@ import java.util.List;
 public interface AuthorService {
 
     List<Author> getAllAuthor(int size, int page);
+
+    Author getAuthorById(Long authorId);
 }

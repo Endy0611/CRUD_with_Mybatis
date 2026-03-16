@@ -1,10 +1,7 @@
 package com.example.batis_demo.repository;
 
 import com.example.batis_demo.model.entity.Author;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 @Mapper
@@ -16,4 +13,10 @@ public interface AuthorRepository {
         SELECT * FROM authors OFFSET #{offSet} LIMIT #{size};
     """)
     List<Author> getAllAuthor(int offSet, int size);
+
+    @ResultMap("authorMapper")
+    @Select("""
+        SELECT * FROM authors WHERE author_id = #{authorId}
+    """)
+    Author getAuthorById(Long authorId);
 }
