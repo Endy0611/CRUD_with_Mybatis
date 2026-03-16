@@ -1,7 +1,9 @@
 package com.example.batis_demo.repository;
 
 import com.example.batis_demo.model.entity.Book;
+import com.example.batis_demo.model.response.ApiResponse;
 import org.apache.ibatis.annotations.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -21,4 +23,11 @@ public interface BookRepository {
         SELECT * FROM books OFFSET #{offSet} LIMIT #{size};
     """)
     List<Book> getAllBook(int offSet, int size);
+
+
+    @ResultMap("BookMapper")
+    @Select("""
+        SELECT * FROM books WHERE book_id = #{bookId};
+    """)
+    Book getBookById(Long bookId);
 }
