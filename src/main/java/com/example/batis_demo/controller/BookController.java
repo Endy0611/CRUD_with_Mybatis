@@ -5,6 +5,8 @@ import com.example.batis_demo.model.entity.Book;
 import com.example.batis_demo.model.request.BookRequest;
 import com.example.batis_demo.model.response.ApiResponse;
 import com.example.batis_demo.service.BookService;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,5 +63,17 @@ public class BookController {
                 .timestamp(Instant.now())
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{book_id}")
+    public ResponseEntity<ApiResponse<Book>> deleteBookById(@PathVariable("book_id") Long bookId) {
+        ApiResponse<Book> apiResponse = ApiResponse.<Book>builder()
+                .success(true)
+                .status(HttpStatus.OK)
+                .message("Deleted Book successfully!")
+                .payload(bookService.deleteBookById(bookId))
+                .timestamp(Instant.now())
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 }

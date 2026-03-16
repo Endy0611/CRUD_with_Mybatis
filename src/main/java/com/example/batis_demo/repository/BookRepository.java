@@ -37,4 +37,11 @@ public interface BookRepository {
         INSERT INTO books VALUES (default, #{req.title}, #{req.publishDate}, #{req.authorId}) RETURNING *;
     """)
     Book saveBook(@Param("req") BookRequest bookRequest);
+
+
+    @ResultMap("BookMapper")
+    @Select("""
+        DELETE FROM books WHERE book_id = #{bookId} RETURNING *;
+    """)
+    Book deleteBookById(Long bookId);
 }
